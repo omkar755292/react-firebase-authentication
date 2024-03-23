@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.REACT_APP_FIREBASE_APPID,
-  measurementId: process.env.REACT_APP_MESURMENTID
+  apiKey: "AIzaSyBHNsc5FMgxfIePIdoXDNExDCslZv6MOjo",
+  authDomain: "onkar-dev.firebaseapp.com",
+  projectId: "onkar-dev",
+  storageBucket: "onkar-dev.appspot.com",
+  messagingSenderId: "63007506112",
+  appId: "1:63007506112:web:1a1f317f5099ba3ba73725",
+  measurementId: "G-EP742PYE0G"
 };
 
 const app = initializeApp(firebaseConfig);
