@@ -3,12 +3,12 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword
 } from 'firebase/auth';
-import{ auth} from '../firebase';
+import { auth } from '../firebase';
 
 const UserAuthContext = createContext();
 
 function UserAuthContextProvider(props) {
-    
+
     function register(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
     }

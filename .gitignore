@@ -4,12 +4,16 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
+setup.sh
+deploy.sh
 
 # testing
 /coverage
 
 # production
 /build
+/react.authentication
 
 # misc
 .DS_Store
