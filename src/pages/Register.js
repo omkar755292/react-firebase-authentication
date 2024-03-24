@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
 
 const Register = () => {
-    const [username, setUserName] = useState('');
+    const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { register } = useUserAuth();
@@ -12,8 +12,8 @@ const Register = () => {
     const add = async (e) => {
         e.preventDefault();
         try {
-            await register(email, password);
-            setUserName('');
+            await register(email, password, fullName);
+            setFullName('');
             setEmail('');
             setPassword('');
             navigate('/login');
@@ -30,8 +30,8 @@ const Register = () => {
                     <input type="name"
                         class="form-control"
                         id="name"
-                        value={username}
-                        onChange={(e) => { setUserName(e.target.value) }} />
+                        value={fullName}
+                        onChange={(e) => { setFullName(e.target.value) }} />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Email address</label>

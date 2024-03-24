@@ -13,7 +13,7 @@ const Home = () => {
   }
   return (
     <div>
-      <h1> hello form {user.email} </h1>
+      <h1> hello form {user.displayName} </h1>
       <button onClick={handleLogout}>Logout</button>
     </div>
   )

@@ -6,7 +6,8 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateProfile
 } from 'firebase/auth';
 import { auth } from '../firebase';
 
@@ -15,24 +16,41 @@ const UserAuthContext = createContext();
 function UserAuthContextProvider(props) {
   const [user, setUser] = useState(" ");
 
-  function register(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const register = async (email, password, fullName) => {
+    try {
+
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, { displayName: fullName });
+      return userCredential.user;
+
+    } catch (error) {
+      alert(error.message);
+    }
   }
+
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  function loginWithGoogle() {
-    const googleAuthProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleAuthProvider);
+  const loginWithGoogle = async () => {
+
+    try {
+      const googleAuthProvider = new GoogleAuthProvider();
+      return await signInWithPopup(auth, googleAuthProvider);
+
+    } catch (error) {
+      console.error('Google Sign-In Error:', error);
+      throw error;
+    }
+
   }
 
   function logout() {
     return signOut(auth);
   }
 
-  function forgetPassword(email){
-    return sendPasswordResetEmail(auth,email);
+  function forgetPassword(email) {
+    return sendPasswordResetEmail(auth, email);
   }
 
   useEffect(() => {
@@ -45,7 +63,7 @@ function UserAuthContextProvider(props) {
     }
   }, [])
 
-  const value = { register, login, logout, loginWithGoogle, forgetPassword,user }
+  const value = { register, login, logout, loginWithGoogle, forgetPassword, user }
 
   return (
     <UserAuthContext.Provider value={value}>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
 
-const Login = (props) => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useUserAuth();
@@ -29,11 +29,7 @@ const Login = (props) => {
                         class="form-control"
                         id="email"
                         value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                            props.setEmail5(e.target.value);
-                        }}
-                    />
+                        onChange={(e) => { setEmail(e.target.value) }} />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>

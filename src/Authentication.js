@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -8,7 +8,6 @@ import { useUserAuth } from './context/UserAuthContext';
 
 const Authentication = () => {
     const { loginWithGoogle, forgetPassword } = useUserAuth();
-    const [email5, setEmail5] = useState('');
 
     const navigate = useNavigate();
     const handleGoogleLogin = async (e) => {
@@ -24,8 +23,8 @@ const Authentication = () => {
     const forgetPasswordHandler = async (e) => {
         e.preventDefault();
         try {
+            const email5 = prompt('please enter email');
             await forgetPassword(email5);
-            setEmail5('');
             alert("Chenck Email")
         } catch (error) {
             alert(error.message);
@@ -37,8 +36,8 @@ const Authentication = () => {
             <div>
                 <Avtar />
                 <Routes>
-                    <Route exact path='/' element={<Login setEmail5={setEmail5} />} />
-                    <Route exact path='/login' element={<Login setEmail5={setEmail5} />} />
+                    <Route exact path='/' element={<Login />} />
+                    <Route exact path='/login' element={<Login />} />
                     <Route exact path='/register' element={<Register />} />
                 </Routes>
                 <div className='d-flex flex-column justify-content-center'>
