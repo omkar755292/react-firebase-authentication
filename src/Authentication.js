@@ -7,6 +7,7 @@ import GoogleButton from 'react-google-button'
 import { useUserAuth } from './context/UserAuthContext';
 
 const Authentication = () => {
+    
     const { loginWithGoogle, forgetPassword } = useUserAuth();
 
     const navigate = useNavigate();
